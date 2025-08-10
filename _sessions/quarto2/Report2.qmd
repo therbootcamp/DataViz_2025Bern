@@ -1,0 +1,111 @@
+---
+title: "Do the rich get richer in Basel?"
+date: '2024-06-23'
+author: "The R Bootcamp"
+format: 
+  html: 
+    toc: true
+    toc-title: Contents
+    toc-location: left
+    theme: flatly
+execute: 
+  echo: false
+  message: false
+  warning: false
+---
+
+```{r}
+require(tidyverse)
+require(patchwork)
+require(knitr)
+
+basel <- read_csv("1_Data/taxation.csv")
+```
+
+::: {.column-margin}
+![](https://avatars.githubusercontent.com/u/46960540?s=200&v=4){width="200" align="center"}
+:::
+
+Inequalities in income and wealth are a growing social issue ^[See https://www.un.org/en/un75/inequality-bridging-divide.]. This analysis seeks to quantify inequality in Basel, Switzerland, by analyzing the widening of wealth and income gaps between the city's quarters from 2001 to 2017.    
+
+### Income and wealth
+
+The data provided by [Open Data Basel](https://www.opendata.bs.ch/) contains information on the wealth and income of the inhabitants of the `r length(unique(basel$quarter))` quarters of Basel based on tax-return documents. @fig-gini presents a schematic overview of the data. 
+
+```{mermaid}
+%%| echo: false
+%%| label: fig-gini
+%%| fig-cap: "Schematic overview of the data"
+flowchart LR
+  A{Basel} --> B[Altstadt Grossbasel]
+  A{Basel} --> C[...]
+  A{Basel} --> D[Wettstein]
+  B --> E[2001]
+  B --> F[...]
+  B --> G[2017]
+  E --> H[Number of tax returns]
+  E --> I[Mean income]
+  E --> J[Mean Wealth]
+```
+
+### Quantifying inequality
+
+@fig-inequality shows the development of income (panel A) and wealth (panel B) in Basel's quarters in the years 2001 to 2017. It can be observed that the incomes in poorer quarters in 2001 declined with time, whereas those of richer quarters rose. Similarly, wealth in poorer quarters rose less strongly than wealth in quarters that started out wealthier. These results suggest a widening of income and wealth inequality in Basel.    
+
+```{r, echo = FALSE, fig.asp=.7}
+#| label: fig-inequality
+#| fig-cap: "Inequality in Basel. The figure shows the development of income and walth from 2001 to 2017, revealing a declining development for poorer quarters (darker shades) and an inclining development for richer quarters (lighter colors). The data was kindly provided by Open Data Basel-Stadt"
+
+# create quarter factor
+basel <- basel %>%
+  arrange(year, income_mean) %>% 
+  mutate(quarter = as_factor(quarter)) 
+  
+# create income plot
+plot_income <- basel %>% 
+  ggplot(aes(x = year, y = income_mean, col = quarter)) +
+  labs(x = "Year", y = "Income")
+
+# create income plot
+plot_wealth <- basel %>%
+  ggplot(aes(x = year, y = wealth_median, col = quarter)) +
+  labs(x = "Year", y = "Wealth")
+
+# create joint plot
+plot_income + plot_wealth  + 
+  plot_layout(guides = "collect") +
+  plot_annotation(title = "Inequality in Basel",
+                  subtitle = "Income and wealth development from 2001 to 2017",
+                  tag_levels = "A") & 
+  geom_point() & 
+  geom_line() &
+  scale_color_viridis_d() &
+  theme_minimal() &
+  theme(legend.position = "bottom",
+        legend.title = element_blank(),
+        legend.key.height = unit(.01,"in"))
+  
+```
+
+### Limitations and outlook
+
+The presented analysis of income and wealth inequalities based on Basel's quarters comes with several limitations. Most importantly, the analysis does not account for mobility, implying that some of the temporal differences could driven by changes in the quarters' inhabitants. More detailed analyses which track inhabited across time will be needed to  demonstrate conclusively a widening of inequality in Basel. 
+
+### Appendix
+
+@tbl-grossbasel shows excerpt of the data for quarter *Alstadt Grossbasel*.
+
+```{r}
+#| label: tbl-grossbasel
+#| tbl-cap: "Data excerpt for Altstadt Grossbasel"
+AltGross <- 
+basel %>%
+  filter(quarter == 'Altstadt Grossbasel') %>%
+  select(quarter, year, N, income_mean, wealth_mean)
+
+kable(AltGross,
+       col.names = c("Quarter", "Year", "N","Mean income", "Mean Wealth"),
+      align = "ccccc")
+```
+
+

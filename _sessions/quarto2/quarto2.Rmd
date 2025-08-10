@@ -1,0 +1,1536 @@
+---
+title: "Quarto II"
+author: "Visualizing and communicating data with R<br>
+  <a href='https://therbootcamp.github.io'>
+    <font style='font-size:1em'>The R Bootcamp @ Bern</font>
+  </a>
+  <br>
+  <a href='https://therbootcamp.github.io/DataViz_2024Bern/'>
+    <i class='fas fa-clock' style='font-size:1em;'></i>
+  </a>&#8239; 
+  <a href='https://therbootcamp.github.io'>
+    <i class='fas fa-home' style='font-size:1em;' ></i>
+  </a>&#8239;
+  <a href='therbootcamp@gmail.com'>
+    <i class='fas fa-envelope' style='font-size: 1em;'></i>
+  </a>&#8239;
+  <a href='https://www.linkedin.com/company/27090302'>
+    <i class='fab fa-linkedin' style='font-size: 1em;'></i>
+  </a>"
+date: "June 2024"
+output:
+  xaringan::moon_reader:
+    css: ["default", "baselrbootcamp.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+layout: true
+
+<div class="my-footer">
+  <span style="text-align:center">
+    <span> 
+      <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/>
+    </span>
+    <a href="https://therbootcamp.github.io/">
+      <span style="padding-left:82px"> 
+        <font color="#7E7E7E">
+          https://therbootcamp.github.io
+        </font>
+      </span>
+    </a>
+    <a href="https://therbootcamp.github.io/">
+      <font color="#7E7E7E">
+      The R Bootcamp | June 2024
+      </font>
+    </a>
+    </span>
+  </div> 
+
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+options(width = 110)
+options(digits = 4)
+
+# Load packages
+require(tidyverse)
+library(leaflet)
+library(plotly)
+
+# load color set
+source("../../_materials/palette/therbootcamp_palettes.R")
+
+# knitr options
+knitr::opts_chunk$set(dpi = 300, echo = FALSE, warning = FALSE, fig.align = 'center', message= FALSE)
+
+# special print function: avoid if possible
+print2 <- function(x, nlines=10,...) {
+   cat(head(capture.output(print(x,...)), nlines), sep="\n")}
+
+basel <- read_csv("1_data/taxation.csv")
+
+```
+
+
+.pull-left4[
+
+# Images
+
+<ul>
+  <li class="m1"><span>There is specific <high>markdown syntax</high> to include images.</span></li>
+</ul>
+
+<table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px" width=100%>
+  <col width="50%">
+  <col width="50%">
+<tr>
+  <td bgcolor="white">
+    <b>Markdown</b>
+  </td>
+  <td bgcolor="white">
+    <b>Description</b>
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>!&lsqb;Caption&rsqb;(Filename)</mono>
+  </td>
+  <td bgcolor="white">
+  <high>Caption</high> is displayed below the image.
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>{width=XX}</mono>
+  </td>
+  <td bgcolor="white">
+   Changing <high>width</high> with measure in px, in or %.    
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>{fig-align="XX"}</mono>
+  </td>
+  <td bgcolor="white">
+   Define <high>alignment</high> with 'left', 'right' and 'center'.    
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>{.lightbox}</mono>
+  </td>
+  <td bgcolor="white">
+   In HTML add lightbox to allow  <high>zooming</high> into the image upon clicking on it.    
+  </td> 
+</tr>
+</table>
+
+]
+
+.pull-right5[
+<br><br>
+<div style="width:100%">
+````markdown
+![Logo Uni Bern](unibe.png)
+````
+</div>
+<iframe class="slide-deck" src="example_image/image.html" width = "100%" height = 400></iframe>
+
+
+]
+
+---
+
+.pull-left4[
+
+# Images
+
+<ul>
+  <li class="m1"><span>There is specific <high>markdown syntax</high> to include images.</span></li>
+</ul>
+
+<table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px" width=100%>
+  <col width="50%">
+  <col width="50%">
+<tr>
+  <td bgcolor="white">
+    <b>Markdown</b>
+  </td>
+  <td bgcolor="white">
+    <b>Description</b>
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>!&lsqb;Caption&rsqb;(Filename)</mono>
+  </td>
+  <td bgcolor="white">
+  <high>Caption</high> is displayed below the image.
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>{width=XX}</mono>
+  </td>
+  <td bgcolor="white">
+   Changing <high>width</high> with measure in px, in or %.    
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>{fig-align="XX"}</mono>
+  </td>
+  <td bgcolor="white">
+   Define <high>alignment</high> with 'left', 'right' and 'center'.    
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>{.lightbox}</mono>
+  </td>
+  <td bgcolor="white">
+   In HTML add lightbox to allow  <high>zooming</high> into the image upon clicking on it.    
+  </td> 
+</tr>
+</table>
+
+]
+
+.pull-right5[
+<br><br>
+<div style="width:100%">
+````markdown
+![Logo Uni Bern](unibe.png){width='30%'}
+````
+</div>
+<iframe class="slide-deck" src="example_image_size/image.html" width = "100%" height = 300></iframe>
+
+
+]
+
+---
+
+.pull-left4[
+
+# Images
+
+<ul>
+  <li class="m1"><span>There is specific <high>markdown syntax</high> to include images.</span></li>
+</ul>
+
+<table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px" width=100%>
+  <col width="50%">
+  <col width="50%">
+<tr>
+  <td bgcolor="white">
+    <b>Markdown</b>
+  </td>
+  <td bgcolor="white">
+    <b>Description</b>
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>!&lsqb;Caption&rsqb;(Filename)</mono>
+  </td>
+  <td bgcolor="white">
+  <high>Caption</high> is displayed below the image.
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>{width=XX}</mono>
+  </td>
+  <td bgcolor="white">
+   Changing <high>width</high> with measure in px, in or %.    
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>{fig-align="XX"}</mono>
+  </td>
+  <td bgcolor="white">
+   Define <high>alignment</high> with 'left', 'right' and 'center'.    
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>{.lightbox}</mono>
+  </td>
+  <td bgcolor="white">
+   In HTML add lightbox to allow  <high>zooming</high> into the image upon clicking on it.    
+  </td> 
+</tr>
+</table>
+
+]
+
+.pull-right5[
+<br><br>
+<div style="width:100%">
+````markdown
+![Logo Uni Bern](unibe.png)
+{width='30%' fig-align='left'}
+````
+</div>
+<iframe class="slide-deck" src="example_image_position/image.html" width = "100%" height = 300></iframe>
+
+
+]
+
+---
+
+.pull-left4[
+
+# Images
+
+<ul>
+  <li class="m1"><span>There is specific <high>markdown syntax</high> to include images.</span></li>
+</ul>
+
+<table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px" width=100%>
+  <col width="50%">
+  <col width="50%">
+<tr>
+  <td bgcolor="white">
+    <b>Markdown</b>
+  </td>
+  <td bgcolor="white">
+    <b>Description</b>
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>!&lsqb;Caption&rsqb;(Filename)</mono>
+  </td>
+  <td bgcolor="white">
+  <high>Caption</high> is displayed below the image.
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>{width=XX}</mono>
+  </td>
+  <td bgcolor="white">
+   Changing <high>width</high> with measure in px, in or %.    
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>{fig-align="XX"}</mono>
+  </td>
+  <td bgcolor="white">
+   Define <high>alignment</high> with 'left', 'right' and 'center'.    
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>{.lightbox}</mono>
+  </td>
+  <td bgcolor="white">
+   In HTML add lightbox to allow  <high>zooming</high> into the image upon clicking on it.    
+  </td> 
+</tr>
+</table>
+
+]
+
+.pull-right5[
+<br><br>
+<div style="width:100%">
+````markdown
+![Logo Uni Bern](unibe.png)
+{width='30%' fig-align='left' .lightbox}
+````
+</div>
+<iframe class="slide-deck" src="example_image_light/image.html" width = "100%" height = 300></iframe>
+
+]
+
+
+---
+
+# Tables
+
+.pull-left4[
+
+Quarto supports custom <high>markdown table</high> output.
+
+<ul>
+  <li class="m1"><span><mono>---</mono> indicate the <high>relative width</high> of a column.</li>
+  <li class="m2"><span><mono>:</mono> the <high>alignment</high> of a column.</li>
+  <li class="m3"><span><mono>{tbl-colwidths='[W,X,Y,Z]'}</mono> sets explicit <high>column width.</high></span></li> 
+  <li class="m4"><span>Complex <high>sub-table</high> designs are possible.</high></span></li> 
+</ul>
+
+]
+
+.pull-right5[
+
+<div style="width:100%">
+````markdown
+| Default | Left | Right | Center |
+|---------|:-----|------:|:------:|
+| 12      | 12   |    12 |   12   |
+| 123     | 123  |   123 |  123   |
+| 1       | 1    |     1 |   1    |
+
+````
+</div>
+<iframe class="slide-deck" src="example_table/table.html" width = "100%" height = 300></iframe>
+
+
+]
+
+---
+
+# Tables
+
+.pull-left4[
+
+Quarto supports custom <high>markdown table</high> output.
+
+<ul>
+  <li class="m1"><span><mono>---</mono> indicate the <high>relative width</high> of a column.</li>
+  <li class="m2"><span><mono>:</mono> the <high>alignment</high> of a column.</li>
+  <li class="m3"><span><mono>{tbl-colwidths='[W,X,Y,Z]'}</mono> sets explicit <high>column width.</high></span></li> 
+  <li class="m4"><span>Complex <high>sub-table</high> designs are possible.</high></span></li> 
+</ul>
+
+]
+
+.pull-right5[
+
+<div style="width:100%">
+````markdown
+| Default | Left | Right | Center |
+|---------|:-----|------:|:------:|
+| 12      | 12   |    12 |   12   |
+| 123     | 123  |   123 |  123   |
+| 1       | 1    |     1 |   1    |
+
+: {tbl-colwidths="[15,15,30,40]"}
+````
+</div>
+<iframe class="slide-deck" src="example_table_calc/table.html" width = "100%" height = 300></iframe>
+
+
+]
+
+---
+
+# Tables
+
+.pull-left4[
+
+Quarto supports custom <high>markdown table</high> output.
+
+<ul>
+  <li class="m1"><span><mono>---</mono> indicate the <high>relative width</high> of a column.</li>
+  <li class="m2"><span><mono>:</mono> the <high>alignment</high> of a column.</li>
+  <li class="m3"><span><mono>{tbl-colwidths='[W,X,Y,Z]'}</mono> sets explicit <high>column width.</high></span></li> 
+  <li class="m4"><span>Complex <high>sub-table</high> designs are possible.</high></span></li> 
+</ul>
+
+]
+
+.pull-right5[
+
+
+<div style="width:100%">
+````markdown
+::: {#tbl-panel layout-ncol=1}
+| Col1 | Col2 | Col3 |
+|------|------|------|
+| A    | B    | C    |
+| E    | F    | G    |
+| A    | G    | G    |
+
+: First Table {#tbl-first}
+
+| Col1 | Col2 | Col3 |
+|------|------|------|
+| A    | B    | C    |
+| E    | F    | G    |
+| A    | G    | G    |
+
+: Second Table {#tbl-second}
+
+Main Caption
+:::
+
+````
+</div>
+<br>
+]
+
+---
+
+# Tables
+
+.pull-left4[
+
+Quarto supports custom <high>markdown table</high> output.
+
+<ul>
+  <li class="m1"><span><mono>---</mono> indicate the <high>relative width</high> of a column.</li>
+  <li class="m2"><span><mono>:</mono> the <high>alignment</high> of a column.</li>
+  <li class="m3"><span><mono>{tbl-colwidths='[W,X,Y,Z]'}</mono> sets explicit <high>column width.</high></span></li> 
+  <li class="m4"><span>Complex <high>sub-table</high> designs are possible.</high></span></li> 
+</ul>
+
+]
+
+.pull-right5[
+
+<iframe class="slide-deck" src="example_table_sub/table.html" width = "100%" height = "400"></iframe>
+
+
+]
+
+---
+
+# Calculations in Tables
+
+.pull-left4[
+
+Within tables <high>adding chunks</high> allows execution of R-code.
+
+<ul>
+  <li class="m1"><span>In-Line R-Code and R-chunks generate <high>dynamic</high> tables.</li>
+  <li class="m2"><span>Caption is set with <mono>tab-cap</mono> in chunk-options.</li>
+</ul>
+
+]
+
+.pull-right5[
+
+
+<div style="width:100%">
+````markdown
+{r}
+#| tbl-cap: "Basel data"
+library(knitr)
+basel <- read_csv('../1_Data/taxation.csv')
+kable(head(basel))
+
+````
+</div>
+<iframe class="slide-deck" src="example_table_col/table.html" width = "100%" height = 350></iframe>
+
+
+]
+
+---
+
+
+# Cross referencing
+
+.pull-left4[
+
+Cross references  <high>ease navigation </high> of documents.
+
+<ul>
+  <li class="m1"><span>A cross reference consist of a <high>label (#)</high> and <high>referrer (@)</high></span></li>
+  <li class="m2"><span>Add label to <high>images</high> with <mono>#fig-label</mono></span>, to <high>tables</high> with <mono>#tbl-label</mono></span></li>
+  <li class="m3"><span>Insert referrer in text to <high>Images</high> with <mono>&commat;fig-label</mono></span>, to <high>tables</high> with <mono>&commat;tbl-label</mono></li> </span></li>  
+</ul>
+
+]
+
+.pull-right5[
+
+<div style="width:100%">
+````markdown
+| Default | Left | Right | Center |
+|---------|:-----|------:|:------:|
+| 12      | 12   |    12 |   12   |
+| 123     | 123  |   123 |  123   |
+| 1       | 1    |     1 |   1    |
+: Simple pipe table syntax {#tbl-pipe}
+
+And then references in text - see @tbl-pipe.
+````
+</div>
+<iframe class="slide-deck" src="example_ref/ref.html" width = "100%" height = 300></iframe>
+
+
+]
+
+---
+
+# Cross referencing
+
+.pull-left4[
+
+Cross references  <high>ease navigation </high> of documents.
+
+<ul>
+  <li class="m1"><span>A cross reference consist of a <high>label (#)</high> and <high>referrer (@)</high></span></li>
+  <li class="m2"><span>Add label to <high>images</high> with <mono>#fig-label</mono></span>, to <high>tables</high> with <mono>#tbl-label</mono></span></li>
+  <li class="m3"><span>Insert referrer in text to <high>Images</high> with <mono>&commat;fig-label</mono></span>, to <high>tables</high> with <mono>&commat;tbl-label</mono></li> </span></li>  
+</ul>
+
+]
+
+.pull-right5[
+
+<div style="width:100%">
+````markdown
+![Logo Uni Bern](unibe.png)
+{width='30%' fig-align='left' #fig-logo} 
+
+As can been seen in @fig-logo.
+````
+</div>
+<iframe class="slide-deck" src="example_image_ref/image_ref.html" width = "100%" height = 300></iframe>
+
+
+]
+
+---
+
+.pull-left4[
+
+# Diagrams
+
+Quarto has native support for embedding <high>Mermaid  diagrams</high>.
+
+<ul>
+  <li class="m1"><span>This allows you to create flowcharts or sequence diagrams with <high>plain text syntax</high> similar to Markdown.</span></li>
+  <li class="m2"><span>initialize with <mono>{mermaid}</mono></span></li>
+    <li class="m3"><span><mono>[]</mono> <high>hard</high> edges, <mono>()</mono> <high>round</high> edges, <mono>{}</mono> <high>decision point</high></span></li>
+        <li class="m4"><span><high>connect nodes</high> with <mono>--></mono></span></li>
+</ul>
+
+
+]
+
+.pull-right5[
+<br><br>
+<div style="width:100%">
+````markdown
+{mermaid}
+  A[Hard edge]
+  B(Round edge)
+  C{Decision}
+````
+</div>
+<iframe class="slide-deck" src="example_dia/dia_small.html" width = "100%", height = 350></iframe>
+
+]
+
+---
+
+
+.pull-left4[
+
+# Diagrams
+
+Quarto has native support for embedding <high>Mermaid  diagrams.</high>
+
+<ul>
+  <li class="m1"><span>This allows you to create flowcharts or sequence diagrams with <high>plain text syntax</high> similar to Markdown.</span></li>
+  <li class="m2"><span>initialize with <mono>{mermaid}</mono></span></li>
+    <li class="m3"><span><mono>[]</mono> <high>hard</high> edges, <mono>()</mono> <high>round</high> edges, <mono>{}</mono> <high>decision point</high></span></li>
+        <li class="m4"><span><high>connect nodes</high> with <mono>--></mono></span></li>
+</ul>
+
+
+]
+
+.pull-right5[
+<br><br>
+<div style="width:100%">
+````markdown
+{mermaid}
+flowchart LR
+  A[Hard edge] --> B(Round edge)
+  B --> C{Decision}
+  C --> D[Result one]
+  C --> E[Result two]
+````
+</div>
+<iframe class="slide-deck" src="example_dia/dia.html" width = "100%"></iframe>
+
+]
+
+---
+
+# Placement of content
+
+.pull-left4[
+
+Quarto support various options to modify the <high>standard page layout</high>.
+<ul>
+  <li class="m1"><span>Let content <high>overflow</high> the standard layout. </span></li>
+  
+  <li class="m2"><span>Place content in the <high>right margin</high>. </span></li>
+  <li class="m3"><span>Among others, <high>images, figures or tables</high>.</span></li>
+</ul>
+
+<table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px" width=100%>
+  <col width="50%">
+  <col width="50%">
+<tr>
+  <td bgcolor="white">
+    <b>Markdown</b>
+  </td>
+  <td bgcolor="white">
+    <b>Description</b>
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>column-body</mono>
+  </td>
+  <td bgcolor="white">
+  <high>Standard</high> text body.
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>column-body-outset</mono>
+  </td>
+  <td bgcolor="white">
+   Extend <high>outside</high> text body.    
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>column-page</mono>
+  </td>
+  <td bgcolor="white">
+   <high>Wide</high> content.    
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>column-margin</mono>
+  </td>
+  <td bgcolor="white">
+   Place content <high>in the margin</high>.    
+  </td> 
+</tr>
+</table>
+
+
+]
+
+.pull-right5[
+
+
+<p align = "center">
+  <img src="image/margin.png" width=500><br>
+</p>
+
+]
+
+
+---
+
+# Presentations
+
+.pull-left4[
+<high>HTML</high> with reveal.js
+
+<ul>
+  <li class="m1"><span>Define <high>Sections</high> and <high>Slides</high> using <mono>#</mono>.</span></li>
+</ul>
+
+<table style="cellspacing:0; cellpadding:0; border:none; padding-top:20px" width=100%>
+  <col width="40%">
+  <col width="60%">
+<tr>
+  <td bgcolor="white">
+    <b>Markdown</b>
+  </td>
+  <td bgcolor="white">
+    <b>Description</b>
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>#</mono>
+  </td>
+  <td bgcolor="white">
+  Add new <high>section</high>
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>##</mono>
+  </td>
+  <td bgcolor="white">
+  Add new <high>slide</high>
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>-</mono>
+  </td>
+  <td bgcolor="white">
+  <high>List</high> item
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>incremental</mono>
+  </td>
+  <td bgcolor="white">
+  <high>stepwise</high> reveal
+  </td> 
+</tr>
+</table>
+
+
+]
+
+.pull-right5[
+
+<div style="width:70%">
+````markdown
+---
+title: "Habits"
+author: "John Doe"
+format: revealjs
+---
+
+# Daily routine
+
+## Getting up
+- Turn off alarm
+- Get out of bed
+
+## Going to sleep
+- Get in bed
+- Count sheep
+````
+</div>
+<iframe class="slide-deck" src="example_presentations/turn_on.html" width = "70%" ></iframe>
+
+]
+
+---
+
+# Presentations
+
+.pull-left4[
+<high>HTML</high> with reveal.js
+
+<ul>
+  <li class="m1"><span>Define <high>Sections</high> and <high>Slides</high> using <mono>#</mono>.</span></li>
+</ul>
+
+<table style="cellspacing:0; cellpadding:0; border:none; padding-top:20px" width=100%>
+  <col width="40%">
+  <col width="60%">
+<tr>
+  <td bgcolor="white">
+    <b>Markdown</b>
+  </td>
+  <td bgcolor="white">
+    <b>Description</b>
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>#</mono>
+  </td>
+  <td bgcolor="white">
+  Add new <high>section</high>
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>##</mono>
+  </td>
+  <td bgcolor="white">
+  Add new <high>slide</high>
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>-</mono>
+  </td>
+  <td bgcolor="white">
+  <high>List</high> item
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>incremental</mono>
+  </td>
+  <td bgcolor="white">
+  <high>stepwise</high> reveal
+  </td> 
+</tr>
+</table>
+
+]
+
+.pull-right5[
+
+<div style="width:70%">
+````markdown
+---
+title: "Habits"
+author: "John Doe"
+format:
+  revealjs:
+    incremental: true
+---
+
+````
+</div>
+<iframe class="slide-deck" src="example_presentations/incremental.html" width = "70%" height = "250"></iframe>
+
+]
+
+---
+
+# Columns
+
+.pull-left4[
+
+<ul>
+  <li class="m1"><span><high>Distribute</high> content with <high>columns</high> <br>defined by fences <mono>::::</mono>.</span></li>
+</ul>
+
+<table style="cellspacing:0; cellpadding:0; border:none; padding-top:20px" width=100%>
+  <col width="50%">
+  <col width="50%">
+<tr>
+  <td bgcolor="white">
+    <b>Markdown</b>
+  </td>
+  <td bgcolor="white">
+    <b>Description</b>
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono><mono>:::: {.column}</mono></mono>
+  </td>
+  <td bgcolor="white">
+  Add <high>columns</high>
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>::: {.column width="XX%"}</mono>
+  </td>
+  <td bgcolor="white">
+  Set column <high>width</high>
+  </td> 
+</tr>
+
+</table>
+
+]
+
+.pull-right5[
+
+<div style="width:70%">
+````markdown
+:::: {.columns}
+::: {.column width="40%"}
+Left column
+- Turn off alarm
+- Get out of bed
+:::
+
+::: {.column width="60%"}
+Right column
+
+- Get in bed
+- Count sheep
+:::
+::::
+
+````
+</div>
+<iframe class="slide-deck" src="example_presentations/columns.html" width = "70%" ></iframe>
+
+]
+
+---
+
+# Speaker notes
+
+.pull-left4[
+
+<ul>
+  <li class="m1"> <span>Add Speaker <high>notes</high> with <mono>{.notes}</mono></span></li> 
+  <li class="m2"><span>Press <mono>S</mono> for <high>presentation view</high>.</span></li> 
+
+</ul>
+
+]
+
+.pull-right5[
+
+<div style="width:70%">
+````markdown
+## Slide with speaker notes
+
+Slide content
+
+::: {.notes}
+Speaker notes go here.
+:::
+
+````
+</div>
+<img src="image/speaker_notes.png" width=400px><br>
+
+]
+
+---
+
+# Footer & Logo
+
+.pull-left4[
+
+Add information on <high> each slide</high>.
+
+<ul>
+  <li class="m1"><span><high>Footer</high> text </span></li> 
+  <li class="m2"><span><high>Logo<Logo></span></li> 
+  <li class="m3"><span><high>Custom footer</high> per slide </span></li> 
+
+</ul>
+
+]
+
+.pull-right5[
+
+<div style="width:70%">
+````markdown
+---
+format:
+  revealjs:
+    logo: logo.png
+    footer: "University of Bern"
+---
+
+````
+</div>
+<iframe class="slide-deck" src="example_presentations/footer.html" width = "70%" height = "250"></iframe>
+
+]
+
+---
+
+# Footer & Logo
+
+.pull-left4[
+
+Add information on <high> each slide</high>.
+
+<ul>
+  <li class="m1"><span><high>Footer</high> text </span></li> 
+  <li class="m2"><span><high>Logo<Logo></span></li> 
+  <li class="m3"><span><high>Custom footer</high> per slide</span></li> 
+
+</ul>
+
+]
+
+.pull-right5[
+
+<div style="width:70%">
+````markdown
+
+---
+format:
+  revealjs:
+    logo: logo.png
+    footer: "University of Bern"
+---
+...
+
+::: footer
+Custom footer text
+:::
+
+````
+</div>
+<iframe class="slide-deck" src="example_presentations/footer_custom.html" width = "70%" ></iframe>
+
+]
+
+---
+
+# Aligning text
+
+.pull-left4[
+
+Specific functions to define  <high>position/size</high> of text on a slide.
+
+<ul>
+  <li class="m1"><span><mono>.center</mono> text on slide  </span></li> 
+  <li class="m2"><span><mono>.r-fit-text</mono> <high>BIG</high> text  </span></li> 
+
+  <li class="m3"><span><mono>.stretch</mono> text between components  </span></li> 
+</ul>
+
+]
+
+.pull-right5[
+
+<div style="width:70%">
+````markdown
+## This is important {.center}
+
+Sleep 7 hours!
+````
+</div>
+<iframe class="slide-deck" src="example_presentations/center.html" width = "70%" height = "250" ></iframe>
+
+]
+
+---
+
+# Aligning text
+
+.pull-left4[
+
+Specific functions to define  <high>position/size</high> of text on a slide.
+
+<ul>
+  <li class="m1"><span><mono>.center</mono> text on slide  </span></li> 
+  <li class="m2"><span><mono>.r-fit-text</mono> <high>BIG</high> text  </span></li> 
+
+  <li class="m3"><span><mono>.stretch</mono> text between components  </span></li> 
+</ul>
+
+]
+
+.pull-right5[
+
+<div style="width:70%">
+````markdown
+## {.center}
+
+::: {.r-fit-text}
+Even more important!
+:::
+````
+</div>
+<iframe class="slide-deck" src="example_presentations/BIG.html" width = "70%" height = "250" ></iframe>
+
+]
+
+
+
+---
+
+# Aligning text
+
+.pull-left4[
+
+Specific functions to define  <high>position/size</high> of text on a slide.
+
+<ul>
+  <li class="m1"><span><mono>.center</mono> text on slide  </span></li> 
+  <li class="m2"><span><mono>.r-fit-text</mono> <high>BIG</high> text  </span></li> 
+
+  <li class="m3"><span><mono>.stretch</mono> text between components  </span></li> 
+</ul>
+
+]
+
+.pull-right5[
+
+<div style="width:70%">
+````markdown
+## {.center}
+
+Here is an image:
+
+![](unibe.png){.r-stretch}
+
+Some text after the image.
+````
+</div>
+<iframe class="slide-deck" src="example_presentations/stretch.html" width = "70%" height = "250" ></iframe>
+
+]
+
+---
+
+# Adding color
+
+.pull-left4[
+
+Emphasizing with <high>colors</high>.
+
+<ul>
+  <li class="m1"><span><mono>[word]{style="color:red"}</mono> for text</span></li> 
+  <li class="m2"><span><mono>background-color</mono> for slide</span></li> 
+  <li class="m3"><span><mono>data-background-X</mono> to update <high>title slide</high></span></li> 
+</ul>
+
+]
+
+.pull-right5[
+
+<div style="width:70%">
+````markdown
+##
+
+Even [more]{style="color:red"} 
+important!
+
+````
+</div>
+<iframe class="slide-deck" src="example_presentations/color.html" width = "70%" height = "300" ></iframe>
+
+]
+
+---
+
+# Adding color
+
+.pull-left4[
+
+Emphasizing with <high>colors</high>.
+
+<ul>
+  <li class="m1"><span><mono>[word]{style="color:red"}</mono> for text</span></li> 
+  <li class="m2"><span><mono>background-color</mono> for slide</span></li> 
+  <li class="m3"><span><mono>data-background-X</mono> to update <high>title slide</high></span></li> 
+</ul>
+
+]
+
+.pull-right5[
+
+<div style="width:70%">
+````markdown
+## {background-color="lightblue"}
+
+Even [more]{style="color:red"} 
+important!
+````
+</div>
+<iframe class="slide-deck" src="example_presentations/color.html" width = "70%" height = "300" ></iframe>
+
+]
+
+---
+
+# Adding color
+
+.pull-left4[
+
+Emphasizing with <high>colors</high>.
+
+<ul>
+  <li class="m1"><span><mono>[word]{style="color:red"}</mono> for text</span></li> 
+  <li class="m2"><span><mono>background-color</mono> for slide</span></li> 
+  <li class="m3"><span><mono>data-background-X</mono> to update <high>title slide</high></span></li>  
+</ul>
+
+]
+
+.pull-right5[
+
+<div style="width:82%">
+````markdown
+title-slide-attributes:
+    data-background-color: "lightblue"
+````
+</div>
+<iframe class="slide-deck" src="example_presentations/title_slide_lightblue.html" width = "82%" height = "300" ></iframe>
+
+]
+
+
+---
+
+# Adding color
+
+.pull-left4[
+
+Emphasizing with <high>colors</high>.
+
+<ul>
+  <li class="m1"><span><mono>[word]{style="color:red"}</mono> for text</span></li> 
+  <li class="m2"><span><mono>background-color</mono> for slide</span></li> 
+  <li class="m3"><span><mono>data-background-X</mono> to update <high>title slide</high></span></li>  
+</ul>
+
+]
+
+.pull-right5[
+
+<div style="width:82%">
+````markdown
+title-slide-attributes:
+    data-background-color: "lightblue"
+    data-background-image: unibe.png
+    data-background-size: 150px
+    data-background-position: 10px 10px
+````
+</div>
+<iframe class="slide-deck" src="example_presentations/title_slide.html" width = "82%" height = "300" ></iframe>
+
+]
+
+---
+
+
+
+
+# Themes
+
+.pull-left4[
+
+<ul>
+  <li class="m1"><span><high>Built in themes</high> allow for simple change of <high>global appearance</high>. </span></li> 
+  <li class="m2"><span><high>11<Logo> themes available</span></li> 
+<ul> 
+<li>beige
+<li>blood
+<li>dark
+<li>default
+<li>league
+<li>moon
+<li>night
+<li>serif
+<li>simple
+<li>sky
+<li>solarized
+</ul>
+</ul>
+
+]
+
+.pull-right5[
+
+<div style="width:82%">
+````markdown
+---
+format:
+  revealjs: 
+    theme: dark
+---
+````
+</div>
+<iframe class="slide-deck" src="example_presentations/themes_1.html" width = "82%" height = "300"></iframe>
+
+]
+
+---
+
+# Themes
+
+.pull-left4[
+
+<ul>
+  <li class="m1"><span><high>Built in themes</high> allow for simple change of <high>global appearance</high>. </span></li> 
+  <li class="m2"><span><high>11<Logo> themes available</span></li> 
+<ul> 
+<li>beige
+<li>blood
+<li>dark
+<li>default
+<li>league
+<li>moon
+<li>night
+<li>serif
+<li>simple
+<li>sky
+<li>solarized
+</ul>
+</ul>
+
+]
+
+.pull-right5[
+
+<div style="width:82%">
+````markdown
+---
+format:
+  revealjs: 
+    theme: solarized
+---
+````
+</div>
+<iframe class="slide-deck" src="example_presentations/themes_2.html" width = "82%" height = "300" ></iframe>
+
+]
+
+---
+
+
+# Presentations in Power Point
+
+.pull-left4[
+
+<ul>
+  <li class="m1"><span>Update <mono>format</mono> to <high>pptx</high>.</span></li>
+</ul>
+
+<table style="cellspacing:0; cellpadding:0; border:none; padding-top:20px" width=100%>
+  <col width="40%">
+  <col width="60%">
+<tr>
+  <td bgcolor="white">
+    <b>Markdown</b>
+  </td>
+  <td bgcolor="white">
+    <b>Description</b>
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>#</mono>
+  </td>
+  <td bgcolor="white">
+  Add new <high>section</high>
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>##</mono>
+  </td>
+  <td bgcolor="white">
+  Add new <high>slide</high>
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>-</mono>
+  </td>
+  <td bgcolor="white">
+  <high>List</high> item
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>incremental</mono>
+  </td>
+  <td bgcolor="white">
+  <high>stepwise</high> reveal
+  </td> 
+</tr>
+</table>
+
+
+]
+
+.pull-right5[
+
+<div style="width:70%">
+````markdown
+---
+title: "Habits"
+author: "John Doe"
+format: pptx
+---
+
+# Daily routine
+
+## Getting up
+- Turn off alarm
+- Get out of bed
+
+## Going to sleep
+- Get in bed
+- Count sheep
+````
+</div>
+<p align = "center">
+
+</p>
+
+]
+
+
+---
+
+# Presentations
+
+.pull-left4[
+
+<ul>
+  <li class="m1"><span>Update <mono>format</mono> to <high>pptx</high>.</span></li>
+</ul>
+
+<table style="cellspacing:0; cellpadding:0; border:none; padding-top:20px" width=100%>
+  <col width="40%">
+  <col width="60%">
+<tr>
+  <td bgcolor="white">
+    <b>Markdown</b>
+  </td>
+  <td bgcolor="white">
+    <b>Description</b>
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>#</mono>
+  </td>
+  <td bgcolor="white">
+  Add new <high>section</high>
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>##</mono>
+  </td>
+  <td bgcolor="white">
+  Add new <high>slide</high>
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>-</mono>
+  </td>
+  <td bgcolor="white">
+  <high>List</high> item
+  </td> 
+</tr>
+<tr>
+  <td bgcolor="white">
+  <mono>incremental</mono>
+  </td>
+  <td bgcolor="white">
+  <high>stepwise</high> reveal
+  </td> 
+</tr>
+</table>
+
+
+]
+
+.pull-right5[
+
+<div style="width:70%">
+
+</div>
+<p align = "center">
+  <img src="image/powerpoint.png" height=400px>
+</p>
+
+]
+
+
+---
+
+class: middle, center
+
+<h1><a href="">Practical</a></h1>
+
+

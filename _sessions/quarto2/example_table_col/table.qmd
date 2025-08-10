@@ -1,0 +1,18 @@
+---
+title: ""
+format:
+  html
+execute: 
+  echo: false
+  message: false
+  warning: false
+---
+
+```{r}
+#| label: tbl-iris
+#| tbl-cap: "Basel data"
+library(tidyverse)
+library(knitr)
+basel <-read_csv('../1_Data/taxation.csv')
+kable(head(basel))
+```
