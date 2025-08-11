@@ -17,7 +17,7 @@ author: "Visualizing and communicating data with R<br>
   <a href='https://www.linkedin.com/company/27090302'>
     <i class='fab fa-linkedin' style='font-size: 1em;'></i>
   </a>"
-date: "June 2024"
+date: "August 2025"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -314,6 +314,6 @@ Klicke auf <high>"....running..."</high> auf unserer Website!
 
 class: middle, center
 
-<h1><a href="https://therbootcamp.github.io/DataViz_2024Bern/">Schedule</a></h1>
+<h1><a href="index.html">Schedule</a></h1>
 
 
