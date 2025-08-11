@@ -1,6 +1,8 @@
 # General
 
-- page is not up: https://therbootcamp.github.io/DataViz_2025Bern
+- send invitation email to participants with install instructions
+
+ok https://therbootcamp.github.io/DataViz_2025Bern
 
 # Welcome
 
@@ -45,7 +47,7 @@ ok.
 # Quarto II
 
 
-
+ok
 
 
 # Datasets we need:
