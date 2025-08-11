@@ -16,10 +16,10 @@ class: center, middle, inverse, title-slide
 # maps &amp; nets
 ]
 .author[
-### Visualizing and communicating data with R<br> <a href='https://therbootcamp.github.io'> <font style='font-size:1em'>The R Bootcamp @ Bern</font> </a> <br> <a href='https://therbootcamp.github.io/DataViz_2024Bern/'> <i class='fas fa-clock' style='font-size:1em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:1em;' ></i> </a>  <a href='therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: 1em;'></i> </a>  <a href='https://www.linkedin.com/company/27090302'> <i class='fab fa-linkedin' style='font-size: 1em;'></i> </a>
+### Visualizing and communicating data with R<br> <a href='https://therbootcamp.github.io'> <font style='font-size:1em'>The R Bootcamp @ Bern</font> </a> <br> <a href='https://therbootcamp.github.io/DataViz_2025Bern/'> <i class='fas fa-clock' style='font-size:1em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:1em;' ></i> </a>  <a href='therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: 1em;'></i> </a>  <a href='https://www.linkedin.com/company/27090302'> <i class='fab fa-linkedin' style='font-size: 1em;'></i> </a>
 ]
 .date[
-### June 2024
+### August 2025
 ]
 
 ---
@@ -41,7 +41,7 @@ layout: true
     &lt;/a&gt;
     &lt;a href="https://therbootcamp.github.io/"&gt;
       &lt;font color="#7E7E7E"&gt;
-      The R Bootcamp | June 2024
+      The R Bootcamp | August 2025
       &lt;/font&gt;
     &lt;/a&gt;
     &lt;/span&gt;
@@ -115,7 +115,7 @@ layout: true
 
 
 
-```r
+``` r
 read_sf('1_Data/quarters') 
 ```
 
@@ -156,7 +156,7 @@ Projected CRS: CH1903+ / LV95
 &lt;br&gt;
 
 
-```r
+``` r
 # read shapefiles
 quarters_map &lt;- read_sf('1_Data/quarters')
 
@@ -189,7 +189,7 @@ quarters_map %&gt;%
 &lt;br&gt;
 
 
-```r
+``` r
 # read shapefiles
 quarters_map &lt;- read_sf('1_Data/quarters')
 
@@ -224,7 +224,7 @@ quarters_map %&gt;%
 &lt;br&gt;
 
 
-```r
+``` r
 # join basel tax data
 quarters_map &lt;- quarters_map %&gt;% 
   left_join(filter(basel, year == 2017), 
@@ -256,7 +256,7 @@ quarters_map %&gt;%
 &lt;/ul&gt;
 
 
-```r
+``` r
 # join basel tax data
 quarters_map &lt;- quarters_map %&gt;% 
   left_join(filter(basel, year == 2017), 
@@ -290,7 +290,7 @@ quarters_map %&gt;%
 &lt;/ul&gt;
 
 
-```r
+``` r
 # join basel tax data
 quarters_map &lt;- quarters_map %&gt;% 
   left_join(filter(basel, year == 2017), 
@@ -326,7 +326,7 @@ quarters_map %&gt;%
 &lt;/ul&gt;
 
 
-```r
+``` r
 # join basel tax data
 quarters_map &lt;- quarters_map %&gt;% 
   left_join(filter(basel, year == 2017), 
@@ -362,7 +362,7 @@ quarters_map %&gt;%
 &lt;/ul&gt;
 
 
-```r
+``` r
 # join basel tax data
 quarters_map &lt;- quarters_map %&gt;% 
   left_join(filter(basel, year == 2017), 
@@ -402,7 +402,7 @@ quarters_map %&gt;%
 &lt;/ul&gt;
 
 
-```r
+``` r
 # start with joint object
 quarters_map %&gt;% 
   
@@ -441,7 +441,7 @@ quarters_map %&gt;%
 &lt;/ul&gt;
 
 
-```r
+``` r
 # join basel tax data
 quarters_map %&gt;% 
   
@@ -499,7 +499,7 @@ quarters_map %&gt;%
 &lt;/ul&gt;
 
 
-```r
+``` r
 # determine correlations
 basel %&gt;% 
   select(year, quarter, income_median) %&gt;% 
@@ -552,7 +552,7 @@ basel %&gt;%
 &lt;/ul&gt;
 
 
-```r
+``` r
 # determine correlations
 network &lt;- basel %&gt;% 
   select(year, quarter, income_median) %&gt;% 
@@ -582,18 +582,22 @@ network &lt;- basel %&gt;%
 #
 # An undirected multigraph with 1 component
 #
-# A tibble: 21 × 1
-  name        
-  &lt;chr&gt;       
-1 Am Ring     
-2 Bachletten  
-3 St. Alban   
-4 Gundeldingen
-5 Bruderholz  
-6 Gotthelf    
-# ℹ 15 more rows
+# Node Data: 21 × 1 (active)
+   name               
+   &lt;chr&gt;              
+ 1 Am Ring            
+ 2 Bachletten         
+ 3 St. Alban          
+ 4 Gundeldingen       
+ 5 Bruderholz         
+ 6 Gotthelf           
+ 7 Altstadt Kleinbasel
+ 8 Wettstein          
+ 9 Hirzbrunnen        
+10 Rosental           
+# ℹ 11 more rows
 #
-# A tibble: 184 × 3
+# Edge Data: 184 × 3
    from    to weight
   &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;
 1     1    13  0.523
@@ -615,7 +619,7 @@ network &lt;- basel %&gt;%
 &lt;/ul&gt;
 
 
-```r
+``` r
 # start network plot
 network %&gt;% 
   ggraph() 
@@ -641,7 +645,7 @@ network %&gt;%
 &lt;/ul&gt;
 
 
-```r
+``` r
 # start network plot
 network %&gt;% 
   ggraph() + 
@@ -670,7 +674,7 @@ network %&gt;%
 &lt;/ul&gt;
 
 
-```r
+``` r
 # start network plot
 network %&gt;% 
   ggraph() + 
@@ -703,7 +707,7 @@ network %&gt;%
 &lt;/ul&gt;
 
 
-```r
+``` r
 # start network plot
 network %&gt;% 
   ggraph() + 
@@ -737,7 +741,7 @@ network %&gt;%
 &lt;/ul&gt;
 
 
-```r
+``` r
 # add clusters
 network %&gt;% 
   mutate(community = 
@@ -776,7 +780,7 @@ network %&gt;%
 &lt;/ul&gt;
 
 
-```r
+``` r
 # add clusters
 network %&gt;% 
   ...
@@ -814,7 +818,7 @@ network %&gt;%
 &lt;/ul&gt;
 
 
-```r
+``` r
 # add clusters
 network %&gt;% 
   ...
@@ -849,7 +853,7 @@ network %&gt;%
 &lt;/ul&gt;
 
 
-```r
+``` r
 # add clusters
 network %&gt;% 
   ... 
@@ -885,10 +889,10 @@ class: middle, center
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false,
-"ratio": "16:9"
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false,
+  "ratio": "16:9"
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

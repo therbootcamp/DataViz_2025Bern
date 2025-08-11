@@ -1,6 +1,6 @@
 ---
 title: "Do the rich get richer in Basel?"
-date: '2024-06-23'
+date: '2025-08-01'
 author: "The R Bootcamp"
 format: 
   html: 
