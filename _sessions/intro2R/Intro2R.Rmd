@@ -1136,7 +1136,7 @@ basel %>%
 
 class: middle, center
 
-<h1><a href="https://www.dropbox.com/scl/fi/fhscep9434f30ohmvbmkq/TheRBootcamp.zip?rlkey=sby391yngscgdb8vjlg89cwrl&dl=1">Download<br>project</a></h1>
+<h1><a href="https://github.com/therbootcamp/DataViz_2025Bern/raw/refs/heads/main/TheRBootcamp.zip">Download<br>project</a></h1>
 
 
 ---

@@ -46,7 +46,7 @@ The `oscars.csv` data set contains all Oscar winners up to today. It has the fol
 - Do longer movies receive better ratings?
 - What genre is most popular?
 - How are number of votes and ratings related?
-- Are movies that receive more positive ratings?
+- Are movies that receive more positive ratings grossing more revenue?
 - Which actor pairs appear often together? 
 
 2. Spend 5 minutes to sketch out how a plot that effectively addresses your question might look like. You can do this on a piece of paper or a program like keynote or powerpoint.

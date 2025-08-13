@@ -16,7 +16,7 @@ library(tidyverse)
 basel <- read_csv('1_data/taxation.csv')
 ```
 
-2. Load the `sf` and `tidygraph` packages. 
+2. Load the `sf`, `ggraph` and `tidygraph` packages.
 
 ```{r}
 library(sf)
@@ -136,7 +136,7 @@ network %>%
   XX
 ```
 
-5. Add `aes(width = weight)` and `show.legend = FALSE` to the edges function so that the edges are scaled according to the relatedness between quarters, without showing a legend, which in this case is not stricly necessary.  
+5. Add `aes(width = weight)` and `show.legend = FALSE` to the edges function so that the edges are scaled according to the relatedness between quarters, without showing a legend, which in this case is not strictly necessary.  
 
 ```{r}
 network %>% 
