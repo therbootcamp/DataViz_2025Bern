@@ -1,6 +1,6 @@
 # General
 
-- send invitation email to participants with install instructions
+ok - send invitation email to participants with install instructions
 
 ok https://therbootcamp.github.io/DataViz_2025Bern
 
@@ -43,7 +43,7 @@ ok.
 
 # Quarto
 
-- check 27/36 screenshot of project directory -> screenshot has to be updated - quality sucks.
+ok. - check 27/36 screenshot of project directory -> screenshot has to be updated - quality sucks.
 
 # Quarto II
 

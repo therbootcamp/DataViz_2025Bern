@@ -1404,7 +1404,7 @@ read_csv("../1_data/data.csv")
 .pull-right55[
 <br>
 <p align = "center">
-  <img src="image/folder.png" height=280px>
+  <img src="image/folder.png">
 </p>
 
 
