@@ -85,7 +85,7 @@ Criteria for reports are the quality of the visualization, the clarity of the re
 
 3. You are allowed to adapt the visualization you have previously produced. 
 
-4. The report must conatin...   
+4. The report must contain...   
   - a brief description of your question and the data set(s)
   - a brief description of your analytic approach and results
   - a single figure (multiple panels are permitted)
