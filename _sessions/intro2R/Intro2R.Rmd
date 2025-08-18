@@ -538,7 +538,7 @@ score %>%
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>The <high>novel pipe operator</high> from the <a href="https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html"><mono>magrittr</mono></a> package makes chaining commands easy.</span></li>
+  <li class="m1"><span>The <high>pipe operator</high> from the <a href="https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html"><mono>magrittr</mono></a> package makes chaining commands easy.</span></li>
 </ul>
 
 <br>
