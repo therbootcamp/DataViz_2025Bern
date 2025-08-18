@@ -1,6 +1,8 @@
 ---
 title: "Quarto Report"
-format: html
+output:
+  html_document:
+    self_contained: yes
 execute: 
   echo: false
   message: false
@@ -40,9 +42,6 @@ toc-location: left
 
 ### 3 - Add a diagram to describe the data structure
 
-1. Copy the following Mermaid code into a new chunk. 
-
-```{}
 
 ```{mermaid}
 %%| echo: false
@@ -60,7 +59,7 @@ flowchart LR
   E --> J[Mean Wealth]
 ```
 
-```
+
 
 ### 4 - Add a table in the Appendix showing data for Altstadt Grossbasel
 
