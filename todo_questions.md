@@ -1,59 +1,52 @@
 # General
 
-ok - send invitation email to participants with install instructions
+send invitation email to participants with install instructions
+LINK: https://therbootcamp.github.io/...
 
-ok https://therbootcamp.github.io/DataViz_2025Bern
+- check practicals.
 
 # Welcome
 
-ok
-
 # Principles
 
-ok - but we could add from the GSERM course 
+- we could add from the GSERM course to make introduction 'principles' longer 
 
 # Intro2R
 
-ok - update download project link on line 1139
-ok - https://github.com/therbootcamp/DataViz_2025Bern/raw/refs/heads/main/TheRBootcamp.zip
+- practical in second part in the afternoon
+- take a bit more time to instroduce notebook
+- update download project link on line 1139
+- remove join?
+
+- all Practicals: remove knitr code at beginning junk
+- remove ../ in ../1_data 
 
 # ggplot
 
-ok
+- add assignment of plot to gg object 
+- line 91 `"value"` - remove the quotation marks - this is not for rendering!
+- update .zip for notebooks solutions: add instructions to load library(patchwork) - this is missing before the patchwork parts starts ... 
 
 # Styling
 
-ok
-
 # Viz Problem
-
-ok - line 49: - Are movies that receive more positive ratings?
 
 # Maps & Nets
 
-- geom_image() rausnehmen?
-
-ok - practical: Maps&Nets in notebooks - 
-ok line 139: typo stricly
-ok line 19: 2. Load the `sf`, `ggraph` and `tidygraph` packages. 
+- slide 16 -> check code with edge
 
 # Animation
 
-ok.
+9-12?
+22-23
 
 # Quarto
 
-ok. - check 27/36 screenshot of project directory -> screenshot has to be updated - quality sucks.
-
 # Quarto II
-
-
-ok
-
 
 # Datasets we need:
 
-ok taxation.csv
+
 
 # packages
 
@@ -67,5 +60,3 @@ ggraph
 tidygraph
 	leaflet
 plotly
-
-

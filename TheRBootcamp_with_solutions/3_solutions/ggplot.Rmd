@@ -15,13 +15,13 @@ In this practical, you will visualize the development of wealth in Basel across 
 
 # 0 - Preliminaries
 
-1. If you haven't done so already, load the `tidyverse` and the `taxation.csv` data. 
+1. If you haven't done so already, load the `tidyverse` and `patchwork` package. Also load the `taxation.csv` data into an object called `basel`. 
 
 ```{r}
 library(tidyverse)
-basel <- read_csv('1_data/taxation.csv')
+library(patchwork)
+basel <- read_csv('../1_data/taxation.csv')
 ```
-
 
 # 1 - Summarize
 
@@ -92,7 +92,8 @@ avg_wealth %>%
 1. Let's try to bring the Gini into the picture. Since the Gini is on a completely different scale, the best way to do this is facets. Before we can go there, however, you need to transpose `avg_wealth` to the long format. Let the new variables be called `"variable"` and `"value"`. Save the result as `avg_wealth_long`.
 
 ```{r}
-avg_wealth_long <- avg_wealth %>% 
+avg_wealth_long <- 
+  avg_wealth %>% 
   pivot_longer(c(avg_wealth_mean, 
                  avg_wealth_median, 
                  avg_wealth_gini),

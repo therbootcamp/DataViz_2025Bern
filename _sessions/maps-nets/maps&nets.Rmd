@@ -628,7 +628,7 @@ edges = basel %>%
   rename(from = `...1`,
          to = `...2`,
          weight = n) %>% 
-  filter(weight<1, weight > .5)
+  filter(weight < 1, weight > .5)
 
 
 graph = as_tbl_graph(edges, directed = FALSE)

@@ -372,7 +372,7 @@ animate(p, 100)
 # Types
 
 <ul>
-  <li class="m1"><span><mono>transition_*</mono> functions are sensitive to the <high>type of the transiton variable</high>.</span></li>
+  <li class="m1"><span><mono>transition_*</mono> functions are sensitive to the <high>type of the transition variable</high>.</span></li>
 </ul>
 
 ```{r, eval = FALSE, fig.width = 5, fig.height = 4, dpi=250}
@@ -583,7 +583,10 @@ animate(p, 100)
 ```{r, eval = FALSE, fig.width = 5, fig.height = 4, dpi=250}
 # plot code
 basel %>% 
-  ggplot(...) +
+  ggplot(aes(x = wealth_mean, 
+             y = income_mean, 
+             col = quarter, 
+             label = quarter)) +
   
   # transition length 10
   transition_states(year, 
@@ -885,6 +888,57 @@ p = basel %>%
   shadow_wake(wake_length = .3)
 
 animate(p,3)
+```
+
+]
+
+---
+
+.pull-left45[
+
+# <mono>animate()</mono>
+
+<ul>
+  <li class="m1"><span><mono>animate()</mono> can be used to fine-tune the animation.</span></li>
+</ul>
+
+```{r, eval = FALSE, fig.width = 5, fig.height = 4, dpi=250}
+# plot code
+anim <- basel %>% 
+  ggplot(...) +
+  
+  # transition length 10
+  transition_states(year, 
+    transition_length = 10) +
+  
+  # shadow
+  shadow_wake(wake_length = .3)
+
+# fine-tune
+animate(anim, nframes = 30)
+```
+
+]
+
+.pull-right45[
+
+<br><br>
+
+```{r, echo = FALSE, fig.width = 5, fig.height = 5, dpi=250, fig.align='center'}
+p = basel %>% 
+  arrange(desc(wealth_mean)) %>% 
+  mutate(quarter = as_factor(quarter)) %>% 
+  ggplot(aes(x = wealth_mean, y = income_mean, col = quarter)) +
+  geom_point(show.legend = F, size=4) + 
+  transition_states(year, transition_length = 10) +
+  ggtitle(label = "The rich get richer", 
+          subtitle = "Basel's wealth-income relationship in {closest_state}") +
+  labs(x = "Wealth", y = "Income") +
+  scale_color_viridis_d()  +
+  theme_minimal() +
+  shadow_wake(wake_length = .3)
+
+animate(p,30)
 ```
 
 ]

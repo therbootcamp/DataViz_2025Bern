@@ -15,7 +15,7 @@ In this practical, you will visualize the development of wealth in Basel across 
 
 # 0 - Preliminaries
 
-1. If you haven't done so already, load the `tidyverse` and the `taxation.csv` data. 
+1. If you haven't done so already, load the `tidyverse` and `patchwork` package. Also load the `taxation.csv` data into an object called `basel`.
 
 ```{r}
 library(tidyverse)
