@@ -2,7 +2,6 @@
 title: "Report competition - Results"
 subtitle: "<a href='https://therbootcamp.github.io/DataViz_2024Bern'>Visualizing and communicating data with R</a>"
 author: "The R Bootcamp @ Bern"
-logo: unibe.png
 output:
   html_document:
     css: style.css
