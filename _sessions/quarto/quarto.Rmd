@@ -1389,7 +1389,7 @@ format:
 
 <ul>
   <li class="m1"><span>When rendered, markdown documents do not use the current <high>working directory</high>.</span></li><br>
-  <li class="m2"><span>Paths need to be defined <high>relative to the position of the .Rmd file</high>.</span></li>
+  <li class="m2"><span>Paths need to be defined <high>relative to the position of the .qmd file</high>.</span></li>
 </ul>
 
 <br>
