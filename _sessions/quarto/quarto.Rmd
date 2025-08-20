@@ -115,7 +115,7 @@ basel <- read_csv("1_data/taxation.csv")
   "<high>easy-to-read</high> and <high>easy-to-write</high> plain text format, [...] convert it to structurally valid XHTML (or HTML)"</span></li> 
   <li class="m2"><span>Simple <high>syntax for formatting</high> documents.</span></li>  
   <ul>
-    <li><span>highlight text with bold and italic</span></li>   
+    <li><span>highlight text with <b>bold</b> and <i>italic</i></span></li>   
     <li><span>lists</span></li>  
     <li><span>headers</span></li> 
     <li><span>hyperlinks</span></li>

@@ -990,7 +990,7 @@ p = basel %>%
   theme_minimal() +
   shadow_wake(wake_length = .3)
 
-animate(p, 100)
+animate(p, 30)
 ```
 
 ]

@@ -37,8 +37,9 @@ LINK: https://therbootcamp.github.io/...
 
 # Animation
 
-9-12?
-22-23
+- practical has solutions in it ...
+- animate practical has solutions in Bootcamp folder
+
 
 # Quarto
 

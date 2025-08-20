@@ -29,7 +29,9 @@ options(digits = 3)
 
 ## Overview
 
-Proof your visualization and communication competence using ggplot and quarto in a report competition. Dig deep into your skills to produce a report that effectively communicates your IMDb data project and the visualizations and insights you have generated. The best report earns chocolate.  
+Proof your **visualization and communication competence** using **ggplot** and **Quarto** in a report competition. 
+
+Dig deep into your skills to produce a report that **effectively communicates** your IMDb data project and the visualizations and insights you have generated. 
 
 The competition ends in...
 
@@ -37,7 +39,7 @@ The competition ends in...
 
 <script>
 // Set the date we're counting down to
-var countDownDate = new Date("Jun 14, 2024 17:00:00").getTime();
+var countDownDate = new Date("Aug 20, 2025 14:00:00").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
@@ -70,11 +72,15 @@ var x = setInterval(function() {
 
 ## Task
 
-The movie industry is in decline. Use the `imdb.csv` and `oscars.csv` data set to shed light on key aspects of successful movies. Write a report around the data visualization you have previously produced.      
+The movie industry is in decline. Use the `imdb.csv` and `oscars.csv` data set to shed light on key aspects of successful movies. 
+**Write a report** around the data visualization you have **previously produced**.      
 
-The best report will receive a prize and will be identified in a two-stage procedure. In the first stage, you gather in small groups of 4 or 5 to review your individual reports and identify the best report in your group. In the second stage, the reports identified by each group will be shown presented (3 min) to the entire class before the entire the class votes on the overall best report.    
+The **best report will receive a prize** and will be identified in a two-stage procedure. 
 
-Criteria for reports are the quality of the visualization, the clarity of the report's content and organization, and the effective use of advanced quarto features.
+In the **first stage**, you gather in small groups of 3 or 4 to **review** your individual reports and **identify the best report in your group**. 
+In the **second stage**, the **reports identified** by each group will be **presented** (3 min) to the entire class before the entire the class **votes** on the overall best report.    
+
+Criteria for reports are the **quality of the visualization**, the **clarity** of the report's content and organization, and the **effective use** of advanced Quarto **features**.
 
   
 ### Conditions
@@ -91,7 +97,7 @@ Criteria for reports are the quality of the visualization, the clarity of the re
   - a single figure (multiple panels are permitted)
   - a brief section on limitations and conclusions
   
-5. All features of quarto can be used.  
+5. All features of Quarto can be used.  
 
 
 
