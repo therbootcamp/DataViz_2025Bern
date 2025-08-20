@@ -1,0 +1,91 @@
+---
+title: "Report competition - Results"
+subtitle: "<a href='https://therbootcamp.github.io/DataViz_2024Bern'>Visualizing and communicating data with R</a>"
+author: "The R Bootcamp @ Bern"
+format: revealjs
+output:
+  html_document:
+  css: style.css
+date: today
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+## 
+
+<p align="center">
+<img width="100%" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/1150px-IMDB_Logo_2016.svg.png?20200406194337" margin=0><br>
+<font style="font-size:10px">from [commons.wikimedia.org](https://commons.wikimedia.org/wiki/File:IMDB_Logo_2016.svg)</font>
+</p>
+
+```{r}
+library(tidyverse)
+library(googlesheets4)
+
+df <- read_sheet('https://docs.google.com/spreadsheets/d/1mQrpyPdPPWnkcMSvC3TjGM5WoDQ0h2awI25G-F0n5p8/edit?usp=sharing')
+
+df <- 
+df %>% 
+  rename(Group = "Please select the group you want to rate:",                          Effectiveness = "Rate the effective use of advanced Quarto features.",
+         Clarity = "Rate the clarity of the reports' content.",
+         Quality = "Rate the quality of the data visualization") %>%
+  group_by(Group) %>%
+  summarise(Effectiveness = mean(Effectiveness),
+            Clarity = mean(Clarity),
+            Quality = mean(Quality)
+            ) %>%
+  na.omit()
+
+```
+
+## Ratings
+
+We got `r dim(df)[1]` ratings for `r length(unique(df$Group))` groups of this course. The overall, average rating for the variable `Effectiveness` is: *M* = `r round(mean(df$Effectiveness),1)`, *SD* = `r round(sd(df$Effectiveness),1)`, for the variable `Clarity` is: *M* = `r round(mean(df$Clarity),1)`, *SD* = `r round(sd(df$Clarity),1)` and for the variable `Quality` is: *M* = `r round(mean(df$Quality),1)`, *SD* = `r round(sd(df$Quality),1)`.
+
+## Overview of ratings
+
+```{r}
+df %>%
+  pivot_longer(-Group) %>%
+ggplot(aes(x = name, y = value, group = Group, color = Group)) +
+  geom_point(size = 3) +
+  geom_line(linewidth = 2) +
+  scale_color_viridis_d() +
+  theme_bw(base_size = 22) +
+  labs(title = 'Ratings for Visualization Project',
+       x = '',
+       y = 'Average value') +
+  theme(legend.position = 'none')
+```
+
+## Overview of ratings
+
+```{r}
+df %>%
+  pivot_longer(-Group) %>%
+ggplot(aes(x = name, y = value, group = Group, color = Group)) +
+  geom_point(size = 3) +
+  geom_line(linewidth = 2) +
+  scale_color_viridis_d() +
+  theme_bw(base_size = 22) +
+  labs(title = 'Ratings for Visualization Project',
+       x = '',
+       y = 'Average value') 
+
+df_long <- 
+df %>%
+  pivot_longer(-Group) %>%
+  group_by(Group) %>%
+  summarise(overall = mean(value))
+  
+#df_long[which.max(df_long$overall),]
+```
+
+## And the winner is ...
+
+[`r df_long[which.max(df_long$overall),][1]`]{style="color:#f6c800"}  
+
+With an overall average rating of: 
+[`r round(df_long[which.max(df_long$overall),][2],1)`]{style="color:#f6c800"}  

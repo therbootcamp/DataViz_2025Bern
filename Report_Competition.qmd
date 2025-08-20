@@ -2,14 +2,29 @@
 title: "Report competition - Results"
 subtitle: "<a href='https://therbootcamp.github.io/DataViz_2024Bern'>Visualizing and communicating data with R</a>"
 author: "The R Bootcamp @ Bern"
+logo: unibe.png
 output:
   html_document:
-    css: practical.css
+    css: style.css
     self_contained: no
+date: today
+reference-location: margin
+number-sections: true
 execute:
   echo: false
   warning: false
   message: false
+title-block-banner: "#f6c800"  
+format: 
+  html:
+    page-layout: article
+    smooth-scroll: true
+    theme: cosmo
+    fontcolor: black
+    fontsize: 1.2rem
+    toc: true
+    toc-depth: 3
+    embed-resources: true
 ---
 
 
@@ -59,6 +74,18 @@ ggplot(aes(x = name, y = value, group = Group, color = Group)) +
   theme(legend.position = 'none')
 ```
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 # Overview of ratings
 
 ```{r}
@@ -72,4 +99,19 @@ ggplot(aes(x = name, y = value, group = Group, color = Group)) +
   labs(title = 'Ratings for Visualization Project',
        x = '',
        y = 'Average value') 
+
+df_long <- 
+df %>%
+  pivot_longer(-Group) %>%
+  group_by(Group) %>%
+  summarise(overall = mean(value))
+  
+#df_long[which.max(df_long$overall),]
 ```
+
+
+And the winner is: [`r df_long[which.max(df_long$overall),][1]`]{style="color:#f6c800"}  
+
+with an overall average rating of: 
+[`r round(df_long[which.max(df_long$overall),][2],1)`]{style="color:#f6c800"}  
+
